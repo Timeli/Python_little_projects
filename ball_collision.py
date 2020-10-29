@@ -11,7 +11,6 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('YAHOOOO')
 clock = pygame.time.Clock()
 
-# Переменные
 set_color = 0
 move_ball = 0
 balls = 0
