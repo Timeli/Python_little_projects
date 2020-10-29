@@ -24,7 +24,7 @@ colors = [(38, 70, 83), (42, 157, 143), (233, 196, 106), (244, 162, 97),
 
 
 def reflect_ball(speed_x, speed_y):
-    """ Отскок от рамок экрана
+    """ Bouncing off screen frames
     """
     if x >= width - rad and speed_x > 0:
         speed_x *= -1
@@ -38,8 +38,8 @@ def reflect_ball(speed_x, speed_y):
 
 
 def add_ball(x_pos, y_pos):
-    """Добавление шарика со случайными параметрами
-     в позицию курсора мыши
+    """ Adding a ball with random parameters
+     at the position of the mouse cursor
      """
     speed_x, speed_y = 0, 0
     col = choice(colors)
@@ -50,7 +50,7 @@ def add_ball(x_pos, y_pos):
 
 
 def collision_balls(ball):
-    """Упругое соударение шаров
+    """ Elastic collision of balls
     """
     if ball > 1:
         for i in range(len(B) - 1):
