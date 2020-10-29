@@ -63,11 +63,11 @@ def collision_balls(ball):
                 cos = cat_y / d
                 spd_x1, spd_y1, spd_x2, spd_y2 = B[i][3], B[i][4], B[j][3], B[j][4]
                 if d <= 2 * rad:
-                    # поврот системы координат, расчет направления векторов
+                    # rotation of the coordinate system, calculation of the direction of vectors
                     Vet_x1 = spd_x2 * sin + spd_y2 * cos
                     Vet_x2 = spd_x1 * sin + spd_y1 * cos
 
-                    # разлет шаров при "склеивании"
+                    # bouncing balls when "gluing"
                     dt = (2 * rad - d) / (Vet_x1 - Vet_x2)
                     if dt > 0.6: dt = 0.6
                     if dt < -0.6: dt = -0.6
@@ -80,7 +80,7 @@ def collision_balls(ball):
                     Vet_y2 = -spd_x1 * cos + spd_y1 * sin
 
                     Vet_x1, Vet_x2 = Vet_x2, Vet_x1
-                    # поврот системы координат обратно
+                    # turn the coordinate system back
                     spd_x1 = Vet_x2 * sin - Vet_y2 * cos
                     spd_y1 = Vet_x2 * cos + Vet_y2 * sin
                     spd_x2 = Vet_x1 * sin - Vet_y1 * cos
@@ -90,7 +90,7 @@ def collision_balls(ball):
 
 
 def change_color(col):
-    """Измениние цвета шарика при клике на него
+    """ Change the color of the ball when you click on it
     """
     if set_color:
         tmp = col
@@ -101,7 +101,7 @@ def change_color(col):
 
 
 def stop_ball(idx):
-    """Останавливает выбранный шарик и получает его индекс
+    """ Stops the selected ball and gets its index
     """
     if move_ball == 1:
         for i in range(len(B)):
@@ -117,20 +117,20 @@ while True:
 
     for event in pygame.event.get():
 
-        if event.type == pygame.QUIT:  # event.type == pygame.KEYDOWN
+        if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos_x, pos_y = pygame.mouse.get_pos()
             if event.button == 3:
-                add_ball(pos_x, pos_y)  # добавить шарик в позицию мыши
+                add_ball(pos_x, pos_y)  # add ball to mouse position
                 balls += 1
             elif event.button == 2:
                 move_ball = 1
-                ind = stop_ball(ind)  # остановить шарик в позиции мыши
+                ind = stop_ball(ind)  # stop the ball in the mouse position
             elif event.button == 1:
                 set_color = 1
 
-        #  управление остановленным шариком
+        # stopped ball control
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
                 B[ind][4] += -2
@@ -145,12 +145,12 @@ while True:
         for color, x, y, spd_x, spd_y in B:
             pygame.draw.circle(screen, color, (int(x), int(y)), rad)
 
-        collision_balls(balls)  # соударение шаров
+        collision_balls(balls)  # collision of balls
 
         for top in range(balls):
             [color, x, y, spd_x, spd_y] = B[top]
-            spd_x, spd_y = reflect_ball(spd_x, spd_y)  # отскок от стенок
-            color = change_color(color)  # изменение цвета по клику
+            spd_x, spd_y = reflect_ball(spd_x, spd_y)  # bounce off the walls
+            color = change_color(color)  # color change on click
             x += spd_x
             y += spd_y
             B[top] = [color, x, y, spd_x, spd_y]
