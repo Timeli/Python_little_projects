@@ -8,7 +8,7 @@ pygame.init()
 width, height = 500, 500
 
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('YAHOOOO')
+pygame.display.set_caption('Balls')
 clock = pygame.time.Clock()
 
 set_color = 0
