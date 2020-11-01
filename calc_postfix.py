@@ -4,7 +4,7 @@ def postfix_calc(L: list):
         n = input()
         if n == '=' and len(L) > 0:
             flag = False
-        elif n in '+-*/' and len(L) > 1:
+        elif n in ('+', '-', '*', '/') and len(L) > 1:
             right = L.pop()
             left = L.pop()
             if n == '+':
