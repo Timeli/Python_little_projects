@@ -3,9 +3,10 @@ import string
 #   get punctuation list
 punctuation = string.punctuation
 
-text_old = open('your text.txt')
+text_into = open('your text.txt')
 #   convert text to string and lowercase
-text_old = str(text_old.read()).lower()
+text_old = str(text_into.read()).lower()
+text_into.close()
 
 
 def top_words(text, numb):
